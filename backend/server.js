@@ -10,6 +10,7 @@ import categoryRoute from "./routes/categoryRoute.js";
 import productRoute from "./routes/productRoute.js";
 import wishlistRoute from "./routes/wishlistRoute.js";
 import cartRoute from "./routes/cartRoutes.js";
+import orderRoute from "./routes/orderRoute.js";
 
 dotenv.config();
 
@@ -24,6 +25,7 @@ app.use("/api/category", categoryRoute);
 app.use("/api/product", productRoute);
 app.use("/api/wishlist", wishlistRoute);
 app.use("/api/cart", cartRoute);
+app.use("/api/orders", orderRoute);
 
 app.use(notFound);
 app.use(errorHandle);

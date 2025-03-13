@@ -5,12 +5,10 @@ export const cartValidation = expressAsyncHandler(async (req, res, next) => {
   const userId = req.user?._id.toString();
   let { items } = req.body;
 
-  // Fix nested items structure
   if (items && items.items) {
     items = items.items;
   }
 
-  // Convert productId → product if necessary
   items = items.map(item => ({
     product: item.productId || item.product, 
     quantity: item.quantity,
@@ -18,7 +16,6 @@ export const cartValidation = expressAsyncHandler(async (req, res, next) => {
     size: item.size || null
   }));
 
-  // Validate using Zod
   const result = await cartSchema.safeParse({ userId, items });
 
   if (!result.success) {

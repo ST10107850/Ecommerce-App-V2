@@ -62,7 +62,6 @@ export const updateDoc = (Model) =>
         return next(new HttpError("User not found", NOT_FOUND)); 
       }
   
-      // let query = Model.find({ userId: req.user._id || user: req.user._id}).sort({ createdAt: -1 });
 
       const queryCondition = Model.schema.paths.user ? { user: req.user._id } : { userId: req.user._id };
 
