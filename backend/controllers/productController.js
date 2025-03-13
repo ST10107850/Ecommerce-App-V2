@@ -17,9 +17,6 @@ export const createProduct = expressAsyncHandler(async (req, res) => {
     .status(CREATED)
     .json({ success: true, message: "Product created", data: product });
 });
-
-export const getAllProduct = getAllDoc(Product);
-
 export const getCategoryProduct = expressAsyncHandler(async (req, res) => {
   const { categoryId } = req.params;
 
@@ -29,6 +26,7 @@ export const getCategoryProduct = expressAsyncHandler(async (req, res) => {
     .status(OK)
     .json({ success: true, message: "Product found", data: products });
 });
+export const getAllProduct = getAllDoc(Product);
 
 export const updatedProduct = updateDoc(Product)
 

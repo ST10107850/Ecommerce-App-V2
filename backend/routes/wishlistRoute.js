@@ -18,12 +18,8 @@ wishlistRoute.post(
   createWishlist
 );
 
-
-
-
-
-
 wishlistRoute.get("/", protect, roleMiddleware(["customer"]), getUserWishlist);
+
 wishlistRoute.delete(
   "/:id",
   protect,

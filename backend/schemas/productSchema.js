@@ -1,3 +1,4 @@
+import mongoose, { Mongoose } from "mongoose";
 import { z } from "zod";
 
 export const productSchema = z.object({
@@ -34,8 +35,8 @@ export const productSchema = z.object({
     .string()
     .nonempty("Category is required")
     .regex(/^[0-9a-fA-F]{24}$/, "Invalid category id"),
-  // userId: z
-  //   .string()
-  //   .nonempty("User is required")
-  //   .regex(/^[0-9a-fA-F]{24}$/, "Invalid user id"),
+  userId: z
+    .string()
+    .nonempty("User is required")
+    .refine((id) => mongoose.Types.ObjectId.isValid(id)),
 });

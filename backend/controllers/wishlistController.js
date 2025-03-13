@@ -6,9 +6,10 @@ import Wishlist from "../models/wishlistModel.js";
 
 export const createWishlist = expressAsyncHandler(async (req, res, next) => {
   const { productId } = req.params;
+  
   const userId = req.user?._id;
 
-  const wishlist = await createWishlistService( productId , userId, next);
+  const wishlist = await createWishlistService( {productId }, userId, next);
 
   res.status(CREATED).json({
     status: "success",

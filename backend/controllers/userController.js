@@ -40,9 +40,7 @@ export const logout = expressAsyncHandler(async (req, res) => {
 export const getuserProfile = expressAsyncHandler(async (req, res) => {
   const user = await getProfile(req.user._id);
 
-  const data = user.toObject();
-  delete data.password;
-  delete data.refreshToken;
+  const data = new Users(user).omitFields(["password", "refreshToken"]);
 
   res.status(OK).json({ success: true, data: data });
 });
@@ -50,9 +48,7 @@ export const getuserProfile = expressAsyncHandler(async (req, res) => {
 export const updateProfile = expressAsyncHandler(async (req, res) => {
   const user = await updateProfiles(req.user._id, req);
 
-  const data = user.toObject();
-  delete data.password;
-  delete data.refreshToken;
+  const data = new Users(user).omitFields(["password", "refreshToken"]);
 
   res.status(OK).json({
     success: true,

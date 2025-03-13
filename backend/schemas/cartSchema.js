@@ -15,5 +15,5 @@ export const cartSchema = z.object({
     .string()
     .nonempty("User ID is required")
     .refine((id) => mongoose.Types.ObjectId.isValid(id)),
-  items: z.array(cartItemSchema).min(1, "At least one item is required"),
+  items: z.array(cartItemSchema),
 });

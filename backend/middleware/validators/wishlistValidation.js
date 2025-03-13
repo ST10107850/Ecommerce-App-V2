@@ -5,6 +5,15 @@ import HttpError from "../../utils/HttpError.js";
 
 export const wishlistValidation = expressAsyncHandler(
   async (req, res, next) => {
+    if (!req.user || !req.user._id) {
+      throw new HttpError("User ID is required", BAD_REQUEST);
+    }
+  
+    // Ensure productId exists in request params
+    if (!req.params.productId) {
+      throw new HttpError("Product ID is required", BAD_REQUEST);
+    }
+
     const userId = req.user._id.toString();
     const { productId } = req.params;
 

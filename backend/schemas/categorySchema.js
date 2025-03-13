@@ -1,9 +1,12 @@
+import mongoose from "mongoose";
 import { z } from "zod";
 
 export const categorySchema = z.object({
-  // userId: z
-  //   .string(),
-  //   // .regex(/^[0-9a-fA-F]{24}$/, "Invalid user id"),
+  userId: z
+    .string()
+    .refine((id) => mongoose.Types.ObjectId.isValid(id), {
+      message: "Invalid ID format",
+    }),
   categoryName: z
     .string()
     .nonempty("Category name is required")
